@@ -21,7 +21,7 @@ B := A;;
 print B;;
 ```
 
-Primitives :
+Primitives (from Wikipedia) : 
 ```
 succ         := λn.λf.λx.f (n f x)
 add          := λm.λn.λf.λx.m f (n f x)
