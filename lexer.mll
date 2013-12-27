@@ -39,5 +39,5 @@ rule lexer = parse
   | ";;"                                      { TDoubleSemiColon                                   }
   | "print"                                   { TPrint                                             }
   | digit+ as n                               { TInt (int_of_string n)                             }
-  | (alpha (alpha | digit)* | primitive) as v { TVar v                               }
+  | (alpha (alpha | digit)* | primitive) as v { TVar v                                             }
   | _ as error                                { raise (LexingError ("Unknown " ^ Char.escaped error ^ "token." ))}
