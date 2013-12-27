@@ -4,7 +4,8 @@ Untyped-lambda-calculus
 First real OCaml project to discover what is Lambda Calculus.
 
 File example :
-a comment
+```
+#a comment
 B := (λx.x);;
 A := 42;;
 print B 42;;
@@ -18,8 +19,10 @@ print fact 4;;
 A := 3;;
 B := A;;
 print B;;
+```
 
 Primitives :
+```
 succ         := λn.λf.λx.f (n f x)
 add          := λm.λn.λf.λx.m f (n f x)
 +            := add
@@ -39,3 +42,4 @@ leq?         := λm.λn.iszero? (- m n)
 geq?         := λm.λn.not (iszero? (- m n))
 Y            := (λg.(λx.g (x x)) (λx.g (x x)))
 rec          := Y
+```
