@@ -4,7 +4,7 @@ Untyped-lambda-calculus
 First real OCaml project to discover what is Lambda Calculus.
 
 File example :
-# a comment
+a comment
 B := (λx.x);;
 A := 42;;
 print B 42;;
