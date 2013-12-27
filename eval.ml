@@ -25,7 +25,8 @@ let rec perform_beta_reduction env e =
    match e with
    | App (Abs(x, t), s) -> (substitution t x s) (* beta_reduction *)
    | App (Var v, t) when has_key v env -> perform_beta_reduction env (App (get_val v env, t))
-   | App (v, Var t) when has_key t env -> perform_beta_reduction env (App (v, get_val t env))   | Abs (s, t) -> Abs (s, perform_beta_reduction env t)
+   | App (v, Var t) when has_key t env -> perform_beta_reduction env (App (v, get_val t env))
+   | Abs (s, t) -> Abs (s, perform_beta_reduction env t)
    | App (a, b) -> App (perform_beta_reduction env a, perform_beta_reduction env b)
    | _ -> e
  ;;
