@@ -47,7 +47,7 @@ let rec print_expr env t =
   | Var v ->
     if has_key v env then
       print_expr env (get_val v env)
-    else failwith "Error variable " ^ v ^ "not founded."
+    else failwith "Error variable " ^ v ^ "not found."
   | _ -> Printf.printf "%d\n" (church_to_num (eval_term env t))   
 ;;
 
