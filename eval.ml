@@ -47,8 +47,13 @@ let rec print_expr env t =
   | Var v ->
     if has_key v env then
       print_expr env (get_val v env)
-    else failwith "Error variable " ^ v ^ "not found."
+    else failwith ("Error variable " ^ v ^ "not found.")
   | _ -> Printf.printf "%d\n" (church_to_num (eval_term env t))   
+
+and eval_term env e =
+  if has_beta_redex env e then
+    eval_term env (perform_beta_reduction env e)
+  else e
 ;;
 
 let rec eval_expr env e =
@@ -57,14 +62,9 @@ let rec eval_expr env e =
   | Seq (a, b) -> let env' = eval_expr env a in eval_expr env' b
   | Print t -> print_expr env t; env
   | _ -> env
-
-and eval_term env e =
-  if has_beta_redex env e then
-    eval_term env (perform_beta_reduction env e)
-  else e
 ;;
 
-let () = 
+let _ = 
   let e = (Parser.prgm Lexer.lexer (Lexing.from_channel (open_in Sys.argv.(1))))
   in (eval_expr primitive_env e)
 ;;
